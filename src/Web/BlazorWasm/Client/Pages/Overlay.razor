@@ -1,0 +1,105 @@
+﻿@page "/overlay/{playerId}"
+@page "/overlay/{playerId}/{snapshotId}"
+
+@inject ILogger<Overlay> Logger
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+@inject IServiceProvider ServiceProvider
+@inject IJSRuntime JsRuntime
+
+@{
+    var vm = this.OverlayVm.Value;
+    var playerName = vm?.Player?.Value?.Name ?? this.PlayerId ?? "N/A";
+}
+
+<PageTitle>ScoreSaberProfile: @playerName</PageTitle>
+
+<article class="page @(this.EnableScroll ? "scroll" : "no-scroll")">
+    @if (!string.IsNullOrWhiteSpace(this.ErrorMessage.Value))
+    {
+        <p>@this.ErrorMessage.Value</p>
+    }
+
+    @if (this.ShowControl)
+    {
+        <div class="control" data-html2canvas-ignore>
+            <button @onclick="this.CaptureImage">Copy image to clipboard</button>
+
+            <span>
+                <label for="capture-image-width-input">Image width: </label>
+                <input id="capture-image-width-input" type="number"
+                   @bind-value="this.ImageCaptureWidth.Value" />
+            </span>
+            <span>@this.ControlMessage.Value</span>
+        </div>
+    }
+
+    <div class="container" id="overlay-container" >
+        <BindingView T="OverlayViewModel" Context="vm" DataContext="this.OverlayVm.Value">
+            <NotNullContent>
+                <div class="info-container">
+                    <BindingView T="Player" Context="player" DataContext="vm.Player.Value">
+                        <NotNullContent>
+                            <div class="player-info">
+                                <img class="player-image" src="@player.ProfilePicture"/>
+                                <div class="current-status">
+                                    <div class="player-name">
+                                        <span class="value">@player.Name</span>
+                                    </div>
+                                    <div class="rank">
+                                        <span class="value">@player.Country #@player.CountryRank</span>
+                                        <span class="subvalue">Global #@player.Rank</span>
+                                    </div>
+                                    <div class="current-pp">
+                                        <span class="value">@player.Pp.ToScoreSaberString()</span>
+                                        <span class="subvalue">@((player.Pp - vm.Snapshot.ScoreSaberPlayerProfile.Pp).ToScoreSaberDiffString())pp</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </NotNullContent>
+                    </BindingView>
+
+                    <div class="app-info">
+                        <div class="app-info-item snapshot-timestamp">
+                            <span class="title">Snapshot</span>
+                            <span class="value">@(vm.Snapshot?.Timestamp.ToString("G", this.Culture) ?? "N/A")</span>
+                        </div>
+                        <div class="app-info-item last-updated">
+                            <span class="title">Updated</span>
+                            <span class="value">@vm.LastUpdatedTime.Value.ToString("G", this.Culture)</span>
+                            @if (vm.IsUpdating.Value)
+                            {
+                                <span class="subvalue">Updating...</span>
+                            }
+                            else
+                            {
+                                <span class="subvalue">@((int)(DateTimeOffset.Now - vm.LastUpdatedTime.Value).TotalSeconds) seconds ago.</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="song-history">
+                    @foreach (var score in vm.RecentScores)
+                    {
+                        <BindingView T="PlayerScore" Context="score" DataContext="score">
+                            <div class="song-history-item">
+                                <span class="recent-taken-time">@score.Score.TimeSet.ToOffset(TimeSpan.FromHours(9)).ToString("HH:mm:ss")</span>
+                                <img class="recent-image" src="@score.LeaderBoard.CoverImage"/>
+                                <span class="recent-pp">@score.Score.Pp.ToScoreSaberString()pp</span>
+                                <span class="recent-acc">@(((double)score.Score.BaseScore / score.LeaderBoard.MaxScore).ToString("00.00%"))</span>
+                                @*<span class="recent-song-name"><a href="https://api.beatsaver.com/maps/hash/@score.LeaderBoard.SongHash">@score.LeaderBoard.SongName</a></span>*@
+                                <span class="recent-song-name">@score.LeaderBoard.SongName</span>
+                                <span class="recent-song-level @score.LeaderBoard.Difficulty.DifficultyNameForClass">@score.LeaderBoard.Difficulty.DifficultyName</span>
+                                <span class="recent-song-author">@score.LeaderBoard.SongAuthorName</span>
+                                <span class="recent-song-mapper">@score.LeaderBoard.LevelAuthorName</span>
+                                <span class="recent-song-misses">@score.Score.MissedNotes misses</span>
+                                <span class="recent-song-badcuts">@score.Score.BadCuts bad cuts</span>
+                            </div>
+                        </BindingView>
+                    }
+                </div>
+            </NotNullContent>
+        </BindingView>
+    </div>
+</article>

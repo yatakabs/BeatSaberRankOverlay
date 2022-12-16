@@ -1,0 +1,189 @@
+﻿@page "/"
+
+@inject ILogger<Index> Logger
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+<PageTitle>Rank Overlay Console</PageTitle>
+
+
+<AutoBindingView T="IndexPageViewModel"
+                 Context="vm"
+                 ContextCreated="async vm => await vm.InitializeAsync()">
+
+    <article class="page">
+        <h1>Rank Overlay Console</h1>
+        <section>
+            <h2>Player</h2>
+            <div>
+                <span>ScoreSaber ID : </span>
+                <input @bind-value="vm.PlayerId.Value" @bind-value:event="oninput" />
+                <button @onclick="vm.GetPlayerCommand.AsAction()"
+                        disabled="@vm.GetPlayerCommand.IsDisabled()">
+                    Load
+                </button>
+                <button @onclick="vm.SetDefaultPlayerIdCommand.AsAction()"
+                        disabled="@vm.SetDefaultPlayerIdCommand.IsDisabled()">
+                    Make default
+                </button>
+            </div>
+
+            <BindingView DataContext="vm.Player.Value"
+                         Context="player">
+                <NotNullContent>
+                    <div class="player">
+                        <img class="profile-image" src="@player!.ProfilePicture" />
+                        <span class="name">@player.Name</span>
+                        <span class="pp">@player.Pp</span>
+                        <span class="country">@player.Country</span>
+                        <span class="country-rank">@player.CountryRank</span>
+                        <span class="rank">@player.Rank</span>
+                        <div class="score-stats">
+                            <span class="stats-item">
+                                <span class="stat-title">Average Ranked Accuracy</span>
+                                <span class="stat-value">
+                                    @(player.ScoreStats is not null
+                                        ? player.ScoreStats.AverageRankedAccuracy.ToScoreSaberString() + "%"
+                                        : "N/A")
+                                </span>
+                            </span>
+
+                            <span class="stats-item">
+                                <span class="stat-title">Ranked Play Count</span>
+                                <span class="stat-value">
+                                    @(player.ScoreStats is not null
+                                        ? player.ScoreStats.RankedPlayCount.ToScoreSaberString()
+                                        : "N/A")
+                                </span>
+                            </span>
+
+                            <span class="stats-item">
+                                <span class="stat-title">Total Ranked Score</span>
+                                <span class="stat-value">
+                                    @(player.ScoreStats is not null
+                                        ? player.ScoreStats.TotalRankedScore.ToScoreSaberString()
+                                        : "N/A")
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </NotNullContent>
+            </BindingView>
+        </section>
+
+        <BindingView DataContext="vm.Player.Value!"
+                     Context="palyer">
+            <NotNullContent>
+                <AutoBindingView T="PlayerSnapshotsViewModel"
+                                 Parameters="new object[]{ palyer, vm.PlayerProfile.Value! }"
+                                 Context="svm"
+                                 ContextCreated="async svm => await svm.InitializeAsync()">
+                    <section>
+                        <h2>Snapshots</h2>
+                        <button @onclick="svm.TakeSnapshotCommand.AsAction()">
+                            Take a new snapshot
+                        </button>
+
+                        <button @onclick="svm.TakeSnapshotAndSetAsDefaultCommand.AsAction()">
+                            Take a new snapshot (set as default)
+                        </button>
+
+                        <button @onclick="svm.UpdateSnapshotsCommand.AsAction()">
+                            Refresh snapshots
+                        </button>
+
+                        <section>
+                            <h3>Overlay</h3>
+
+                            <div class="default-snapshot-overlay-url">
+                                <h4> Default Overlay URLs</h4>
+                                <ul>
+                                    <li>No Control: <a href="@svm.DefaultImplicitOverlayUrl.Value">@svm.DefaultImplicitOverlayUrl.Value</a></li>
+                                    <li>With Control: <a href="@svm.DefaultImplicitOverlayUrlWithControl.Value">@svm.DefaultImplicitOverlayUrlWithControl.Value</a></li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h3>Default Snapshot</h3>
+                            <BindingView Context="snapshot"
+                                         DataContext="svm.DefaultSnapshot.Value!">
+                                <NullContent>
+                                    <p class="warning">Default snapshot is not set.</p>
+                                </NullContent>
+                                <NotNullContent>
+                                    <div class="default-snapshot">
+                                        <span class="snapshot-cell id">@snapshot.Id</span>
+                                        <span class="snapshot-cell timestamp">@snapshot.Timestamp.ToOffset(TimeSpan.FromHours(9)).ToString("yyyy/MM/dd HH:mm:ss")</span>
+                                        <span class="snapshot-cell pp">@snapshot.ScoreSaberPlayerProfile.Pp.ToScoreSaberString()pp</span>
+                                        <span class="snapshot-cell rank">#@snapshot.ScoreSaberPlayerProfile.Rank</span>
+                                        <span class="snapshot-cell country-rank">@snapshot.ScoreSaberPlayerProfile.Country #@snapshot.ScoreSaberPlayerProfile.CountryRank</span>
+                                    </div>
+
+                                    <div class="default-snapshot-overlay-url">
+                                        <h4>Overlay URLs</h4>
+                                        <ul>
+                                            <li>No Control: <a href="@svm.DefaultExplicitOverlayUrl.Value">@svm.DefaultExplicitOverlayUrl.Value</a></li>
+                                            <li>With Control: <a href="@svm.DefaultExplicitOverlayUrlWithControl.Value">@svm.DefaultExplicitOverlayUrlWithControl.Value</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <h4>Score Diff</h4>
+                                    <p>
+                                        <span>
+                                            <span>@snapshot.ScoreSaberPlayerProfile.Pp.ToScoreSaberString()pp</span>
+                                            <span>-></span>
+                                            <span>@svm.Player.Pp.ToScoreSaberString()pp</span>
+                                        </span>
+                                        <span>
+                                            (<span>@((svm.Player.Pp - snapshot.ScoreSaberPlayerProfile.Pp).ToScoreSaberDiffString())pp</span>)
+                                        </span>
+                                        <span>
+                                            <span>@svm.Player.Country#@snapshot.ScoreSaberPlayerProfile.CountryRank</span>
+                                            <span>-></span>
+                                            <span>@svm.Player.CountryRank</span>
+                                        </span>
+                                    </p>
+                                </NotNullContent>
+                            </BindingView>
+                        </section>
+
+                        <section>
+                            <h3>All Snapshots</h3>
+                            <div class="snapshots-container">
+                                <div class="snapshot-headers">
+                                    <span class="snapshot-header">ID/Link</span>
+                                    <span class="snapshot-header">Timestamp</span>
+                                    <span class="snapshot-header">PP</span>
+                                    <span class="snapshot-header">Global Rank</span>
+                                    <span class="snapshot-header">Local Rank</span>
+                                    <span class="snapshot-header">Operations</span>
+                                </div>
+
+                                @foreach (var snapshot in svm.Snapshots.OrderByDescending(x => x.Timestamp))
+                                {
+                                    <div class="snapshot @(svm.DefaultSnapshot.Value?.Id == snapshot.Id ? "default" : "")">
+                                        <span class="snapshot-cell id">
+                                            <a href="@svm.BuildOverlayUri(snapshot)">@snapshot.Id</a>
+                                        </span>
+                                        <span class="snapshot-cell timestamp">@snapshot.Timestamp.ToOffset(TimeSpan.FromHours(9)).ToString("yyyy/MM/dd HH:mm:ss")</span>
+                                        <span class="snapshot-cell pp">@snapshot.ScoreSaberPlayerProfile.Pp.ToScoreSaberString()pp</span>
+                                        <span class="snapshot-cell rank">#@snapshot.ScoreSaberPlayerProfile.Rank</span>
+                                        <span class="snapshot-cell country-rank">@snapshot.ScoreSaberPlayerProfile.Country #@snapshot.ScoreSaberPlayerProfile.CountryRank</span>
+                                        <div class="snapshot-cell operations">
+                                            <button @onclick=svm.DeleteSnapshotCommand.AsAction(snapshot)>Delete</button>
+                                            @if (svm.DefaultSnapshot.Value?.Id != snapshot.Id)
+                                            {
+                                                <button @onclick="@svm.SetDefaultSnapshotCommand.AsAction(snapshot)">Make default</button>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </section>
+                    </section>
+                </AutoBindingView>
+            </NotNullContent>
+        </BindingView>
+    </article>
+</AutoBindingView>
