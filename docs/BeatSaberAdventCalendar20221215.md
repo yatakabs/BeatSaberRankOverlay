@@ -135,7 +135,7 @@
 
 これを Twitter の投稿時に貼り付け（`Ctrl+V`）て、ツイートに添付することができます。
 例: https://twitter.com/yatakabs/status/1576980599436296201
-![ツイートの例](fig/tweet-sample.png)  
+<br />![ツイートの例](fig/tweet-sample.png)  
 
 
 ## 配信での使い方
