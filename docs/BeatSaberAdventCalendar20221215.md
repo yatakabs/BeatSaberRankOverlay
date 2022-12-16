@@ -1,34 +1,30 @@
 # スピードマップ苦手民によるおテックな話
 🌅 こんばんは、朝です 🌅
 
-## なにこれ？
+## なにこれ？ {ignore-}  <!-- omit in toc -->
 **[Beat Saber Advent Calendar 2022](https://adventar.org/calendars/7359) 12月15日（木) の記事です。**
-たぶん 12月15日の午前44時くらいに公開されていると思います。おはようございました。
+たぶん 12月15日の午前45時（日本標準時）くらいに公開されていると思います。おはようございました。
 
-### スピードマップと関係あるんですか？
+### スピードマップと関係あるんですか？  <!-- omit in toc -->
 たぶんあります。ランク譜面はスピードマップもいっぱいあるから。
+ちなみにスピード譜面は嫌いじゃないです。苦手なだけで。いうほど苦手ではないかもしれませんが。
 
-### おテックって何ですか？
+### おテックって何ですか？  <!-- omit in toc -->
 テック譜面のことだと思ったあなた、テック譜面に毒されていますね。よいですね、とてもよいと思います。
 **おテック譜面はよいぞ！！**
 
 でもごめんなさい、**譜面の話ではありません**。なぜなら今は朝だから。
 テックはテックでも Technology のテックです。**プログラムのお話です**。あしからず。
 
-### で、なにこれ？
-[ScoreSaber](https://scoresaber.com) のランキング情報を配信画面に載せたり、食べた譜面の一覧やその進捗を画像として取得してツイートしたり、そんなことをするツールです。
+### で、なにこれ？  <!-- omit in toc -->
+**[ScoreSaber](https://scoresaber.com) のランキング情報を配信画面に載せたり**、食べた譜面の一覧やその進捗を画像として取得してツイートしたり、そんなことをするツールです。
 
 👇 これです 👇
 ![使い方の例](fig/streaming-example.png)  
 
 あまなつちゃんかわいいね。
 
-## 目次
-- [なにこれ？](#なにこれ)
-  - [スピードマップと関係あるんですか？](#スピードマップと関係あるんですか)
-  - [おテックって何ですか？](#おテックって何ですか)
-  - [で、なにこれ？](#でなにこれ)
-- [目次](#目次)
+## 目次 <!-- omit in toc -->
 - [基本的な使い方](#基本的な使い方)
   - [1. ダウンロードと解答～実行](#1-ダウンロードと解答実行)
   - [2. 管理ページの起動と初期設定](#2-管理ページの起動と初期設定)
@@ -57,10 +53,16 @@
 ## 基本的な使い方
 ### 1. ダウンロードと解答～実行
 1. 下記のうち、需要にあった zip ファイルをダウンロードします。
-    1.1 [なんもわからんけど使えればよし！って人]()
-    1.2 [.NET Framework 7.0 Runtime がインストールされててDLするファイルが軽い方が良い人 -> ]()
-2. ダウンロードした zip ファイルを解答すると、下記のようなファイルが現れます。
-3. その中にある `RankOverlay.Web.BlazorWasm.Server.exe` を実行します。
+   1. 最新版のリリースはこちら
+      1. https://github.com/yatakabs/BeatSaberRankOverlay/releases/latest
+   2. 下記に従って DL するファイルを選択
+      1. **なんもわからんけど使えればよし！って人 -> `BeatSaberRankOverlay_*.*.*_win-x64_selfcontained.zip` (おすすめ)**
+         - 執筆時の最新版は [こちら (Version 0.0.1)](https://github.com/yatakabs/BeatSaberRankOverlay/releases/download/release-v0.0.1/BeatSaberRankOverlay_0.0.1_win-x64_selfcontained.zip)
+      2. .NET Framework 7.0 Runtime がインストールされててDLするファイルが軽い方が良い人とか -> `BeatSaberRankOverlay_*.*.*_win-x64_framework-dependent.zip`
+         - 執筆時の最新版は [こちら (Version 0.0.1)](https://github.com/yatakabs/BeatSaberRankOverlay/releases/download/release-v0.0.1/BeatSaberRankOverlay_0.0.1_win-x64_framework-dependent.zip)
+2. **ダウンロードした zip ファイルを解答**すると、下記のようなファイルが現れます。
+   ![解答結果の例](fig/extracted.png)  
+3. その中にある **`RankOverlay.Web.BlazorWasm.Server.exe` を実行**します。
 
 
 ### 2. 管理ページの起動と初期設定
@@ -185,9 +187,10 @@
 
 ## 連絡先など
 1. 要望・質問などはかきの何れかへご連絡を。
-   1. [Issue としてこのリポジトリで報告]()
+   1. [Issue としてこのリポジトリで報告](https://github.com/yatakabs/BeatSaberRankOverlay/issues)
    2. [Twitter](https://twitter.com/yatakabs)
 
 ## 免責とか
 1. このプログラムの利用によって生じたいかなる不利益も、開発者は一切の責任を負いません。
 2. 機能追加やバグ修正の依頼・相談など、全てに応じられる訳ではありません。お返事なども遅れがちになることがあるかもしれませんが、気長にお待ちいただく・ご自身で clone/fork して改造するなど他の手段もご利用ください。
+3. この記事は一発書きで推敲していないので変な間違いがあったらごめんなさい。予告無しに修正されたりもすると思います。
