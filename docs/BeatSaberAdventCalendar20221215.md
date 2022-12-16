@@ -1,7 +1,7 @@
 # スピードマップ苦手民によるおテックな話
 🌅 こんばんは、朝です 🌅
 
-## なにこれ？ {ignore-}  <!-- omit in toc -->
+## なにこれ？ <!-- omit in toc -->
 **[Beat Saber Advent Calendar 2022](https://adventar.org/calendars/7359) 12月15日（木) の記事です。**
 たぶん 12月15日の午前45時（日本標準時）くらいに公開されていると思います。おはようございました。
 
