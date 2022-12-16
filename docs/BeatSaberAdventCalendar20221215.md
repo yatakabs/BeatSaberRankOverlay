@@ -81,15 +81,16 @@
 
 ### 3. スナップショットの取得と設定
 1. 現在のスナップショットを取得し、それをデフォルトとして設定するため `Take a new snapshot (set as a default)` ボタンをクリックします。
-   1. `Take a new snapshot` を先に実行して、その後特定のスナップショットを `Make default` ボタンでデフォルトに設定することもできます。
-   ![スナップショットの取得](fig/take-a-default-snapshot.png)  
+    <br />![スナップショットの取得](fig/take-a-default-snapshot.png)  
+   - `Take a new snapshot` を先に実行して、その後特定のスナップショットを `Make default` ボタンでデフォルトに設定することもできます。
+
 2. `Default Snapshot` の欄に取得されたスナップショットが表示され、`All Snapshots` の欄に取得したスナップショットが一覧表示されます。
-    ![取得したスナップショットの例](fig/default-snapshot-sample.png)  
+    <br />![取得したスナップショットの例](fig/default-snapshot-sample.png)  
 
 ### 4. オーバーレイの表示
 1. `Snapshots -> Overlay -> Default Overlay URLs` の `No Control` のリンクを開くと、取得しデフォルトとして設定したスナップショットと現在の差分情報をオーバーレイ用画面として表示するページがみられます
     ![デフォルトオーバーレイの表示リンク](fig/default-overlay-url.png)  
-1. このページを OBS Studio の Browser Source に設定するなどして、配信に利用します。
+2. このページを OBS Studio の Browser Source に設定するなどして、配信に利用します。
     ![オーバーレイページを開いた状態](fig/overlay-screen-with-no-score.png)  
 
 ## 詳細な説明など
