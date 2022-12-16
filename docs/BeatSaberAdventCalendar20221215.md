@@ -70,7 +70,7 @@
 
 ### 2. 管理ページの起動と初期設定
 1. `RankOverlay.Web.BlazorWasm.Server.exe` を実行すると、下記のようなウィンドウが表示され、設定画面の URL が表示されます。
-   1. たぶん http://localhost:5000 だと思います。
+   - たぶん http://localhost:5000 だと思います。
    ![実行結果のイメージ](fig/console-executed.png)  
 2. Web Browser でその URL を開きます。
 3. `ScoreSaber ID` の欄に [ScoreSaber](https://scoresaber.com) の ID を入力して、`Load` ボタンを押します。
@@ -81,7 +81,8 @@
 
 ### 3. スナップショットの取得と設定
 1. 現在のスナップショットを取得し、それをデフォルトとして設定するため `Take a new snapshot (set as a default)` ボタンをクリックします。
-    ![スナップショットの取得](fig/take-a-default-snapshot.png)  
+   1. `Take a new snapshot` を先に実行して、その後特定のスナップショットを `Make default` ボタンでデフォルトに設定することもできます。
+   ![スナップショットの取得](fig/take-a-default-snapshot.png)  
 2. `Default Snapshot` の欄に取得されたスナップショットが表示され、`All Snapshots` の欄に取得したスナップショットが一覧表示されます。
     ![取得したスナップショットの例](fig/default-snapshot-sample.png)  
 
