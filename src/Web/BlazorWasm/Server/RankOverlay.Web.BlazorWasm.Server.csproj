@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyVersion>0.0.1</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\win-x64-framework-dependent.pubxml" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\win-x64-selfcontained.pubxml" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\win-x86-framework-dependent.pubxml" />
+    <_WebToolingArtifacts Remove="Properties\PublishProfiles\win-x86-selfcontained.pubxml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidator" Version="2.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.1" />
+    <PackageReference Include="Storage.Net" Version="9.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Core\src\RankOverlay.Core.csproj" />
+    <ProjectReference Include="..\Client\RankOverlay.Web.BlazorWasm.Client.csproj" />
+    <ProjectReference Include="..\Shared\RankOverlay.Web.BlazorWasm.Shared.csproj" />
+  </ItemGroup>
+
+
+</Project>

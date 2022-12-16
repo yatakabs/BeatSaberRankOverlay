@@ -1,0 +1,207 @@
+﻿.page {
+    background-color: #4a4a4a;
+    color: white;
+    overflow: auto;
+    padding: 5px;
+    height: 100%;
+}
+
+a {
+    color: #72a8ff;
+}
+
+section {
+    margin-top: 10px;
+    border-top: 1px solid white;
+}
+
+    section:first-of-type {
+        border-top: none;
+    }
+
+
+
+.player {
+    font-size: 120%;
+    display: grid;
+    grid-template-areas:
+        "image name country"
+        "image pp pp"
+        "image rank country-rank"
+        "score-stats score-stats score-stats";
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto auto 1fr auto;
+    justify-content: start;
+    align-items: self-end;
+    justify-items: start;
+    margin: 5px;
+}
+
+    .player > .profile-image {
+        grid-area: image;
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .player > .name {
+        grid-area: name;
+        font-size: 120%;
+    }
+
+    .player > .pp {
+        grid-area: pp;
+        font-size: 120%;
+        font-weight: bold;
+    }
+
+        .player > .pp::after {
+            content: "pp";
+        }
+
+    .player > .country {
+        grid-area: country;
+    }
+
+    .player > .country-rank {
+        grid-area: country-rank;
+        margin-left: 10px;
+    }
+
+        .player > .country-rank:before {
+            content: "Local #"
+        }
+
+    .player > .rank {
+        grid-area: rank;
+    }
+
+        .player > .rank::before {
+            content: "#"
+        }
+
+    .player > .score-stats {
+        grid-area: score-stats;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+.score-stats > .stats-item {
+    display: inline-block;
+    background-color: #6b76da;
+    border-radius: 10px;
+    padding: 5px 10px;
+    zoom: 80%;
+    font-weight: bold;
+    margin: 3px;
+}
+
+    .score-stats > .stats-item > .stat-title {
+        border-right: 1px solid white;
+        padding-right: 7px;
+    }
+
+    .score-stats > .stats-item > .stat-value {
+        margin: 0;
+        padding: 0;
+        white-space: break-spaces;
+    }
+
+.default-snapshot {
+    display: grid;
+    grid-template-areas:
+        "id id"
+        "timestamp rank"
+        "pp country-rank";
+    justify-content: start;
+    align-items: center;
+    border-left: 3px solid white;
+    padding-left: 5px;
+    margin: 0.5em;
+}
+
+    .default-snapshot > .id {
+        grid-area: id;
+        /*text-decoration: underline;*/
+        border-bottom: 1px solid white;
+        margin-left: -5px;
+        padding-left: 5px;
+    }
+
+        .default-snapshot > .id::before {
+            content: "ID: "
+        }
+
+    .default-snapshot > .timestamp {
+        grid-area: timestamp;
+    }
+
+    .default-snapshot > .pp {
+        grid-area: pp;
+        font-size: 120%;
+        font-weight: bold;
+    }
+
+    .default-snapshot > .rank {
+        grid-area: rank;
+    }
+
+    .default-snapshot > .country-rank {
+        grid-area: country-rank;
+        font-size: 100%;
+        font-weight: bold;
+    }
+
+.snapshots-container {
+    display: table;
+    table-layout: auto;
+    border-collapse: collapse;
+}
+
+    .snapshots-container > .snapshot-headers {
+        display: table-header-group;
+        border-bottom: 1px solid white;
+    }
+
+        .snapshots-container > .snapshot-headers > .snapshot-header {
+            display: table-cell;
+            padding: 0px 5px;
+        }
+
+    .snapshots-container > .snapshot {
+        display: table-row;
+    }
+
+        .snapshots-container > .snapshot.default {
+            display: table-row;
+            background-color: blue;
+        }
+
+        .snapshots-container > .snapshot > .snapshot-cell {
+            display: table-cell;
+            padding: 0px 5px;
+            /*border: 1px solid green;*/
+        }
+
+            .snapshots-container > .snapshot > .snapshot-cell:first-child {
+                margin-left: 0px;
+                padding-left: 0px;
+            }
+
+            .snapshots-container > .snapshot > .snapshot-cell:last-child {
+                margin-right: 0px;
+            }
+
+        .snapshots-container > .snapshot > .id {
+            width: fit-content;
+            font-size: 50%;
+        }
+
+        .snapshots-container > .snapshot > .country-rank {
+            font-size: 100%;
+        }
+
+        .snapshots-container > .snapshot > .timestamp {
+            width: fit-content;
+        }
