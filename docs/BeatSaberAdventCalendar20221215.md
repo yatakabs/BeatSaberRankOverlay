@@ -3,14 +3,17 @@
 
 ## なにこれ？ <!-- omit in toc -->
 **[Beat Saber Advent Calendar 2022](https://adventar.org/calendars/7359) 12月15日（木) の記事です。**
+
 たぶん 12月15日の午前45時（日本標準時）くらいに公開されていると思います。おはようございました。
 
 ### スピードマップと関係あるんですか？  <!-- omit in toc -->
 たぶんあります。ランク譜面はスピードマップもいっぱいあるから。
+
 ちなみにスピード譜面は嫌いじゃないです。苦手なだけで。いうほど苦手ではないかもしれませんが。
 
 ### おテックって何ですか？  <!-- omit in toc -->
 テック譜面のことだと思ったあなた、テック譜面に毒されていますね。よいですね、とてもよいと思います。
+
 **おテック譜面はよいぞ！！**
 
 でもごめんなさい、**譜面の話ではありません**。なぜなら今は朝だから。
@@ -68,7 +71,7 @@
 ### 2. 管理ページの起動と初期設定
 1. `RankOverlay.Web.BlazorWasm.Server.exe` を実行すると、下記のようなウィンドウが表示され、設定画面の URL が表示されます。
    1. たぶん http://localhost:5000 だと思います。
-    ![実行結果のイメージ](fig/console-executed.png)  
+   ![実行結果のイメージ](fig/console-executed.png)  
 2. Web Browser でその URL を開きます。
 3. `ScoreSaber ID` の欄に [ScoreSaber](https://scoresaber.com) の ID を入力して、`Load` ボタンを押します。
     ![ScoreSaber の ID を入力して Load ボタンをクリック](fig/setup-scoresaber-id.png)  
@@ -85,7 +88,7 @@
 ### 4. オーバーレイの表示
 1. `Snapshots -> Overlay -> Default Overlay URLs` の `No Control` のリンクを開くと、取得しデフォルトとして設定したスナップショットと現在の差分情報をオーバーレイ用画面として表示するページがみられます
     ![デフォルトオーバーレイの表示リンク](fig/default-overlay-url.png)  
-2. このページを OBS Studio の Browser Source に設定するなどして、配信に利用します。
+1. このページを OBS Studio の Browser Source に設定するなどして、配信に利用します。
     ![オーバーレイページを開いた状態](fig/overlay-screen-with-no-score.png)  
 
 ## 詳細な説明など
