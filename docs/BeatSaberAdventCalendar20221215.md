@@ -29,7 +29,7 @@
 
 ## 目次 <!-- omit in toc -->
 - [基本的な使い方](#基本的な使い方)
-  - [1. ダウンロードと解答～実行](#1-ダウンロードと解答実行)
+  - [1. ダウンロードと解凍～実行](#1-ダウンロードと解凍実行)
   - [2. 管理ページの起動と初期設定](#2-管理ページの起動と初期設定)
   - [3. スナップショットの取得と設定](#3-スナップショットの取得と設定)
   - [4. オーバーレイの表示](#4-オーバーレイの表示)
@@ -54,7 +54,7 @@
 
 
 ## 基本的な使い方
-### 1. ダウンロードと解答～実行
+### 1. ダウンロードと解凍～実行
 1. 下記のうち、需要にあった zip ファイルをダウンロードします。
    1. 最新版のリリースはこちら
       1. https://github.com/yatakabs/BeatSaberRankOverlay/releases/latest
@@ -63,8 +63,8 @@
          - 執筆時の最新版は [こちら (Version 0.0.1)](https://github.com/yatakabs/BeatSaberRankOverlay/releases/download/release-v0.0.1/BeatSaberRankOverlay_0.0.1_win-x64_selfcontained.zip)
       2. .NET Framework 7.0 Runtime がインストールされててDLするファイルが軽い方が良い人とか -> `BeatSaberRankOverlay_*.*.*_win-x64_framework-dependent.zip`
          - 執筆時の最新版は [こちら (Version 0.0.1)](https://github.com/yatakabs/BeatSaberRankOverlay/releases/download/release-v0.0.1/BeatSaberRankOverlay_0.0.1_win-x64_framework-dependent.zip)
-2. **ダウンロードした zip ファイルを解答**すると、下記のようなファイルが現れます。
-   ![解答結果の例](fig/extracted.png)  
+2. **ダウンロードした zip ファイルを解凍**すると、下記のようなファイルが現れます。
+   ![解凍結果の例](fig/extracted.png)  
 3. その中にある **`RankOverlay.Web.BlazorWasm.Server.exe` を実行**します。
 
 
