@@ -140,7 +140,7 @@
 
 ## 配信での使い方
 [基本的な使い方](#基本的な使い方) で示したステップのうち、配信前に下記のステップを踏むとよいでしょう。
-1. Beat Saber Rank Overlay (``RankOverlay.Web.BlazorWasm.Server.exe`) を実行
+1. Beat Saber Rank Overlay (`RankOverlay.Web.BlazorWasm.Server.exe`) を実行
 2. 管理画面 (`Rank Overlay Consoel`) を開く
    - 方法は [2. 管理ページの起動と初期設定](#2-管理ページの起動と初期設定) を参照
 3. `Take a new snapshot (set as a default)` ボタンを押して、デフォルトのスナップショットを更新
@@ -160,6 +160,10 @@
       - 必要に応じてカスタマイズを施しても大丈夫です
    4. `OK` ボタンを押して、 Browser Source の設定を完了
    5. 画面上でお好みの位置に Browser Source を表示するようレイアウトを調整
+
+パラメータとかはいろいろ違いますが、下の画像は設定方法の一例です。
+Query Parameter はスクショと同じものに対応していますが、~~パラメータをまとめるのが面倒なので~~ 気になる方はソースコードをご確認くださいませ。
+![OBS studio の Browser Source 設定例](fig/obs-browser-source.png)  
 
 これで、OBS の画面上（配信画面上）に Beat Saber Rank Overlay を表示できました。配信ボタンを押して地獄のようなランク配信をはじめましょう。
 
